@@ -2,7 +2,7 @@
 
 By Max Baker and Madison Olschner
 
- [Project Demo Video](https://github.com/Crimson-Ender/ENGR103Final/edit/gh-pages/index.md](https://www.youtube.com/watch?v=H9CH6SVSBVU)
+ [Project Demo Video](https://www.youtube.com/watch?v=H9CH6SVSBVU)
  
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
