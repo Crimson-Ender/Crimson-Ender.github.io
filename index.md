@@ -26,7 +26,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 
 #define USE_SERIAL Serial
 
-WiFiMulti wifiMulti;
+WiFiMulti wifiMulti; 
 
 /*
 const char* ca = \ 
