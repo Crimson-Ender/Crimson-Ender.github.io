@@ -1,0 +1,62 @@
+#include <Arduino.h>
+#include <WiFi.h>
+#include <WiFiMulti.h>
+#include <HTTPClient.h>
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+WiFiMulti wifiMulti;
+
+const int oneWireBus = 4;
+OneWire oneWire(oneWireBus);
+DallasTemperature sensors(&oneWire);
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  sensors.begin();
+  for (uint8_t t =4; t >0; t--){
+    Serial.printf("[SETUP] WAIT %d...\n", t);
+    Serial.flush();
+    delay(1000);
+  }
+  wifiMulti.addAP("max-lt", "password");
+}
+
+//int tempValue = 10;
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  sensors.requestTemperatures();
+  float temperatureC = sensors.getTempCByIndex(0);
+  float temperatureF = sensors.getTempFByIndex(0);
+  Serial.print(temperatureC);
+  Serial.println("C");
+  Serial.print(temperatureF);
+  Serial.println("F");
+
+  
+  if((wifiMulti.run() == WL_CONNECTED)) {// wait for WIFI connection
+    HTTPClient http; //Creates an HTTPClient object to be used
+    http.begin("https://web.engr.oregonstate.edu/~bakerm7/finalprojectphp.php");
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+    String myString;
+    myString = "temperature=";
+    myString = myString + temperatureF;
+    Serial.print("POST data to send: ");
+    Serial.println(temperatureF);
+    // Send HTTP POST request
+    int httpCode = http.POST(myString);
+    if(httpCode > 0) {//Did we get a valid response?
+      if(httpCode == HTTP_CODE_OK) {//the POST happened correctly
+        String payload = http.getString();
+        Serial.println(payload);
+      }else{
+        Serial.printf("[HTTP] GET... code: %d\n", httpCode);
+      }
+    }
+    http.end();
+  }
+delay(50);
+}
