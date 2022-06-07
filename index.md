@@ -2,7 +2,7 @@
 
 By Max Baker and Madison Olschner
 
-Our final project for Engineering 103 is an internet enabled thermometer. The Input ESP-32 recieves the data via a temperature sensor
+Our final project for Engineering 103 is an internet enabled thermometer. The Input ESP-32 recieves the data via a temperature sensor, and sends that data to a PHP file hosted on the OSU COE webspace. The data is then written to a .csv file which is then read by another PHP file which then transmits that data to the Output ESP-32 which then has an LED light light up according to the temperature reading.
 
  [Project Demo Video](https://www.youtube.com/watch?v=H9CH6SVSBVU)
  
