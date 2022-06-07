@@ -7,9 +7,7 @@ Our final project for Engineering 103 is an internet enabled thermometer. The In
  [Project Demo Video](https://www.youtube.com/watch?v=H9CH6SVSBVU)
  
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Code:
 
 ```markdown
 
